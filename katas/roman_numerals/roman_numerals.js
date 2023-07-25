@@ -1,12 +1,28 @@
 export function numbersToRomanNumerals(num) {
+  // const romanNumerals = {
+  // 1: "I",
+  // 5: "V",
+  // 10: "X",
+  // 50: "L",
+  // 100: "C",
+  // 500: "D",
+  // 1000: "M",
+  // };
   const romanNumerals = {
-    1: "I",
-    5: "V",
-    10: "X",
-    50: "L",
-    100: "C",
-    500: "D",
-    1000: "M",
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
   };
-  return romanNumerals[1];
+
+  const x = Object.keys(romanNumerals).find(
+    (key) => romanNumerals[key] === num
+  );
+  //console.log(x, typeof x);
+  return x;
 }
+
+numbersToRomanNumerals(1);
