@@ -23,4 +23,11 @@ describe("numbersToRomanNumerals", () => {
     expect(numbersToRomanNumerals(8)).toBe("VIII");
     expect(numbersToRomanNumerals(9)).toBe("IX");
   });
+  test("Returns a Roman Numaral of given integer ( >=10 and <39)", () => {
+    expect(numbersToRomanNumerals(11)).toBe("XI");
+    expect(numbersToRomanNumerals(15)).toBe("XV");
+    expect(numbersToRomanNumerals(24)).toBe("XXIV");
+    expect(numbersToRomanNumerals(31)).toBe("XXXI");
+    expect(numbersToRomanNumerals(39)).toBe("XXXIX");
+  });
 });
