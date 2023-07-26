@@ -15,8 +15,12 @@ describe("numbersToRomanNumerals", () => {
     expect(numbersToRomanNumerals(2)).toBe("II");
     expect(numbersToRomanNumerals(3)).toBe("III");
   });
-  test("Returns a Roman Numaral of given ineger ( >=4 and <=8)", () => {
+  test("Returns a Roman Numaral of given ineger ( >=4 and <=9)", () => {
     expect(numbersToRomanNumerals(4)).toBe("IV");
     expect(numbersToRomanNumerals(5)).toBe("V");
+    expect(numbersToRomanNumerals(6)).toBe("VI");
+    expect(numbersToRomanNumerals(7)).toBe("VII");
+    expect(numbersToRomanNumerals(8)).toBe("VIII");
+    expect(numbersToRomanNumerals(9)).toBe("IX");
   });
 });
