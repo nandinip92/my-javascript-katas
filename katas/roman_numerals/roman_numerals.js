@@ -42,6 +42,17 @@ export function numbersToRomanNumerals(inputNumber) {
         }
       }
     }
+    if (inputNumber > 5 && inputNumber < 10) {
+      if (inputNumber == 9) resultNumArray.push(-1, 10);
+      else {
+        let sum = 5;
+        resultNumArray.push(5);
+        while (sum < inputNumber) {
+          sum += 1;
+          resultNumArray.push(1);
+        }
+      }
+    }
   }
 
   //console.log(resultStack);
