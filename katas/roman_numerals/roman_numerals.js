@@ -25,22 +25,23 @@ export function numbersToRomanNumerals(inputNumber) {
   };
 
   let integerValues = Object.values(romanNumerals);
-  let resultStack = [];
+  let resultNumArray = [];
   //Checking if the number is greater than 5 or lessthan 5
   if (inputNumber < 5) {
     if (inputNumber == 4) {
-      resultStack.push(5, -1);
+      resultNumArray.push(-1, 5);
     } else {
       let sum = 0;
       while (sum < inputNumber) {
         sum += 1;
-        resultStack.push(1);
+        resultNumArray.push(1);
       }
     }
   }
   //console.log(resultStack);
 
-  const resultRomanArray = resultStack.map((num) => {
+  const resultRomanArray = resultNumArray.map((num) => {
+    num = num === -1 ? 1 : num;
     return Object.keys(romanNumerals).find((key) => romanNumerals[key] === num);
   });
 
