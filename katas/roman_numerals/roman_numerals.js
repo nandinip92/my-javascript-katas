@@ -4,16 +4,7 @@ googleclassroom link for the assignment: https://classroom.google.com/c/NTYzNzA2
 Source of this kata: https://codingdojo.org/kata/RomanNumerals/ 
 */
 
-export function numbersToRomanNumerals(inputNumber) {
-  // const romanNumerals = {
-  // 1: "I",
-  // 5: "V",
-  // 10: "X",
-  // 50: "L",
-  // 100: "C",
-  // 500: "D",
-  // 1000: "M",
-  // };
+function getRomanNumerals(closestValue, inputNumber) {
   const romanNumerals = {
     I: 1,
     V: 5,
@@ -25,46 +16,65 @@ export function numbersToRomanNumerals(inputNumber) {
   };
 
   let integerValues = Object.values(romanNumerals);
+  // consolePrintStatements("integerValues", integerValues);
 
   //Check if the given number is in the romanNumerals dictionary
-  let resultNumArray = integerValues.includes(inputNumber) ? [inputNumber] : [];
+  if (integerValues.includes(inputNumber)) {
+    let romanKey = Object.keys(romanNumerals).find(
+      (key) => romanNumerals[key] === inputNumber
+    );
+    closestValue.push(romanKey);
+    return closestValue;
+  }
+  // diffValues to store difference between the given inpuNumber and romanNumerals dictionary values
+  let diffValues = {};
+  Object.entries(romanNumerals).forEach(
+    ([key, value]) => (diffValues[key] = inputNumber - value)
+  );
+  consolePrintStatements("diffValues", diffValues);
 
-  //Checking if the number is greater than 5 or lessthan 5
-  if (resultNumArray.length === 0) {
-    if (inputNumber < 5) {
-      if (inputNumber == 4) {
-        resultNumArray.push(-1, 5);
-      } else {
-        let sum = 0;
-        while (sum < inputNumber) {
-          sum += 1;
-          resultNumArray.push(1);
-        }
-      }
-    }
-    if (inputNumber > 5 && inputNumber < 10) {
-      if (inputNumber == 9) resultNumArray.push(-1, 10);
-      else {
-        let sum = 5;
-        resultNumArray.push(5);
-        while (sum < inputNumber) {
-          sum += 1;
-          resultNumArray.push(1);
-        }
-      }
-    }
+  //closest +ve number to the given inputNumber ==>(smallest +ve integer)
+  let minDiffUpperBound = Object.keys(romanNumerals)
+    .filter((k) => diffValues[k] > 0)
+    .reduce((minKey, currKey) =>
+      diffValues[currKey] < diffValues[minKey] ? currKey : minKey
+    );
+
+  //closest -ve number to the given InputNumber ==>(largest -ve integer)
+  let minDiffLowerBound = Object.keys(romanNumerals)
+    .filter((k) => diffValues[k] < 0)
+    .reduce((maxKey, currKey) =>
+      diffValues[currKey] > diffValues[maxKey] ? currKey : maxKey
+    );
+
+  // consolePrintStatements("minDiffLowerBound", minDiffLowerBound);
+  // consolePrintStatements("minDiffUpperBound", minDiffUpperBound);
+
+  if (integerValues.includes(Math.abs(diffValues[minDiffLowerBound]))) {
+    let romanKey = Object.keys(romanNumerals).find(
+      (key) => romanNumerals[key] === Math.abs(diffValues[minDiffLowerBound])
+    );
+    closestValue.push(romanKey, minDiffLowerBound); // eg: for 4 it  is 5 -1 so closestValue = [I,V]
+  } else {
+    closestValue.push(minDiffUpperBound, diffValues[minDiffUpperBound]); //eg: for 7 it is 5+2 so closestValue = [V,2]
   }
 
-  //console.log(resultStack);
+  //if the top/last element of closestValue is a number the 'getRomanNumerals' will be called
+  if (typeof closestValue[closestValue.length - 1] === "number") {
+    getRomanNumerals(closestValue, closestValue.pop()); //eg: for 7 getRomanNumerals([V],2)
+  }
 
-  const resultRomanArray = resultNumArray.map((num) => {
-    num = num === -1 ? 1 : num;
-    return Object.keys(romanNumerals).find((key) => romanNumerals[key] === num);
-  });
-
-  //console.log(resultRomanArray);
-
-  return resultRomanArray.join("");
+  // consolePrintStatements("closestValue", closestValue);
+  return closestValue;
 }
 
+export function numbersToRomanNumerals(inputNumber) {
+  const romanNumerals = getRomanNumerals([], inputNumber);
+  return romanNumerals.join("");
+}
+
+function consolePrintStatements(txt, variable) {
+  console.log(txt);
+  console.log(variable);
+}
 //numbersToRomanNumerals(3);
