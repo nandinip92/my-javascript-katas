@@ -10,12 +10,12 @@ describe("numbersToRomanNumerals", () => {
     expect(numbersToRomanNumerals(500)).toBe("D");
     expect(numbersToRomanNumerals(1000)).toBe("M");
   });
-  test("Returns a Roman Numaral of given ineger ( <=3 )", () => {
+  test("Returns a Roman Numaral of given integer ( <=3 )", () => {
     expect(numbersToRomanNumerals(1)).toBe("I");
     expect(numbersToRomanNumerals(2)).toBe("II");
     expect(numbersToRomanNumerals(3)).toBe("III");
   });
-  test("Returns a Roman Numaral of given ineger ( >=4 and <=9)", () => {
+  test("Returns a Roman Numaral of given integer ( >=4 and <=9)", () => {
     expect(numbersToRomanNumerals(4)).toBe("IV");
     expect(numbersToRomanNumerals(5)).toBe("V");
     expect(numbersToRomanNumerals(6)).toBe("VI");
