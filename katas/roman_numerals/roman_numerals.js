@@ -25,19 +25,25 @@ export function numbersToRomanNumerals(inputNumber) {
   };
 
   let integerValues = Object.values(romanNumerals);
-  let resultNumArray = [];
+
+  //Check if the given number is in the romanNumerals dictionary
+  let resultNumArray = integerValues.includes(inputNumber) ? [inputNumber] : [];
+
   //Checking if the number is greater than 5 or lessthan 5
-  if (inputNumber < 5) {
-    if (inputNumber == 4) {
-      resultNumArray.push(-1, 5);
-    } else {
-      let sum = 0;
-      while (sum < inputNumber) {
-        sum += 1;
-        resultNumArray.push(1);
+  if (resultNumArray.length === 0) {
+    if (inputNumber < 5) {
+      if (inputNumber == 4) {
+        resultNumArray.push(-1, 5);
+      } else {
+        let sum = 0;
+        while (sum < inputNumber) {
+          sum += 1;
+          resultNumArray.push(1);
+        }
       }
     }
   }
+
   //console.log(resultStack);
 
   const resultRomanArray = resultNumArray.map((num) => {
