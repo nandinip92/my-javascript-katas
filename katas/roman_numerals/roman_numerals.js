@@ -31,7 +31,7 @@ function getRomanNumerals(closestValue, inputNumber) {
   Object.entries(romanNumerals).forEach(
     ([key, value]) => (diffValues[key] = inputNumber - value)
   );
-  consolePrintStatements("diffValues", diffValues);
+  //consolePrintStatements("diffValues", diffValues);
 
   //closest +ve number to the given inputNumber ==>(smallest +ve integer)
   let minDiffUpperBound = Object.keys(romanNumerals)
