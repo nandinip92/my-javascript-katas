@@ -30,4 +30,15 @@ describe("numbersToRomanNumerals", () => {
     expect(numbersToRomanNumerals(31)).toBe("XXXI");
     expect(numbersToRomanNumerals(39)).toBe("XXXIX");
   });
+  test("Returns a Roman Numaral of given integer (40,60,70,80)", () => {
+    expect(numbersToRomanNumerals(40)).toBe("XL");
+    expect(numbersToRomanNumerals(60)).toBe("LX");
+    expect(numbersToRomanNumerals(70)).toBe("LXX");
+    expect(numbersToRomanNumerals(80)).toBe("LXXX");
+  });
+  test("Returns a Roman Numaral of given integer around C: 100 (90", () => {
+    expect(numbersToRomanNumerals(90)).toBe("XC");
+    expect(numbersToRomanNumerals(172)).toBe("CLXXII");
+    expect(numbersToRomanNumerals(369)).toBe("CCCLXIX");
+  });
 });
