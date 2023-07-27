@@ -35,7 +35,7 @@ export function numbersToRomanNumerals(inputNumber) {
       400: "CD",
       500: "D",
       600: "DC",
-      700: "CM",
+      700: "DCC",
       800: "DCCC",
       900: "CM",
     },
