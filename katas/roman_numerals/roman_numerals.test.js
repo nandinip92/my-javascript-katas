@@ -49,4 +49,9 @@ describe("numbersToRomanNumerals", () => {
     expect(numbersToRomanNumerals(447)).toBe("CDXLVII");
     expect(numbersToRomanNumerals(448)).toBe("CDXLVIII");
   });
+
+  test("Tests for larger numbers", () => {
+    expect(numbersToRomanNumerals(1998)).toBe("MCMXCVIII");
+    expect(numbersToRomanNumerals(2751)).toBe("MMDCCLI");
+  });
 });
