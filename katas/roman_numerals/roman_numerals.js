@@ -36,6 +36,8 @@ export function numbersToRomanNumerals(inputNumber) {
       500: "D",
       600: "DC",
       700: "CM",
+      800: "DCCC",
+      900: "CM",
     },
     thousands: { 1000: "M", 2000: "MM", 3000: "MMM" },
   };
