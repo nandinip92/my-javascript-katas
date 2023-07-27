@@ -4,77 +4,57 @@ googleclassroom link for the assignment: https://classroom.google.com/c/NTYzNzA2
 Source of this kata: https://codingdojo.org/kata/RomanNumerals/ 
 */
 
-function getRomanNumerals(closestValue, inputNumber) {
+export function numbersToRomanNumerals(inputNumber) {
   const romanNumerals = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000,
+    ones: {
+      1: "I",
+      2: "II",
+      3: "III",
+      4: "IV",
+      5: "V",
+      6: "VI",
+      7: "VII",
+      8: "VIII",
+      9: "IX",
+    },
+    tens: {
+      10: "X",
+      20: "XX",
+      30: "XXX",
+      40: "XL",
+      50: "L",
+      60: "LX",
+      70: "LXX",
+      80: "LXXX",
+      90: "XC",
+    },
+    hundreds: {
+      100: "C",
+      200: "CC",
+      300: "CCC",
+      400: "CD",
+      500: "D",
+      600: "DC",
+      700: "CM",
+    },
+    thousands: { 1000: "M", 2000: "MM", 3000: "MMM" },
   };
 
-  let integerValues = Object.values(romanNumerals);
-  // consolePrintStatements("integerValues", integerValues);
+  const splitNumber = inputNumber.toString().split("");
+  //consolePrintStatements("splitNumber", splitNumber);
+  const places = ["ones", "tens", "hundreds", "thousands"];
+  const placeValues = [1, 10, 100, 1000];
 
-  //Check if the given number is in the romanNumerals dictionary
-  if (integerValues.includes(inputNumber)) {
-    let romanKey = Object.keys(romanNumerals).find(
-      (key) => romanNumerals[key] === inputNumber
-    );
-    closestValue.push(romanKey);
-    return closestValue;
-  }
-  // diffValues to store difference between the given inpuNumber and romanNumerals dictionary values
-  let diffValues = {};
-  Object.entries(romanNumerals).forEach(
-    ([key, value]) => (diffValues[key] = inputNumber - value)
-  );
-  //consolePrintStatements("diffValues", diffValues);
-
-  //closest +ve number to the given inputNumber ==>(smallest +ve integer)
-  let minDiffUpperBound = Object.keys(romanNumerals)
-    .filter((k) => diffValues[k] > 0)
-    .reduce((minKey, currKey) =>
-      diffValues[currKey] < diffValues[minKey] ? currKey : minKey
-    );
-
-  //closest -ve number to the given InputNumber ==>(largest -ve integer)
-  let minDiffLowerBound = Object.keys(romanNumerals)
-    .filter((k) => diffValues[k] < 0)
-    .reduce((maxKey, currKey) =>
-      diffValues[currKey] > diffValues[maxKey] ? currKey : maxKey
-    );
-
-  // consolePrintStatements("minDiffLowerBound", minDiffLowerBound);
-  // consolePrintStatements("minDiffUpperBound", minDiffUpperBound);
-
-  if (integerValues.includes(Math.abs(diffValues[minDiffLowerBound]))) {
-    let romanKey = Object.keys(romanNumerals).find(
-      (key) => romanNumerals[key] === Math.abs(diffValues[minDiffLowerBound])
-    );
-    closestValue.push(romanKey, minDiffLowerBound); // eg: for 4 it  is 5 -1 so closestValue = [I,V]
-  } else {
-    closestValue.push(minDiffUpperBound, diffValues[minDiffUpperBound]); //eg: for 7 it is 5+2 so closestValue = [V,2]
-  }
-
-  //if the top/last element of closestValue is a number the 'getRomanNumerals' will be called
-  if (typeof closestValue[closestValue.length - 1] === "number") {
-    getRomanNumerals(closestValue, closestValue.pop()); //eg: for 7 getRomanNumerals([V],2)
-  }
-
-  // consolePrintStatements("closestValue", closestValue);
-  return closestValue;
-}
-
-export function numbersToRomanNumerals(inputNumber) {
-  const romanNumerals = getRomanNumerals([], inputNumber);
-  return romanNumerals.join("");
+  let romanNumeralResult = splitNumber.reverse().map((digit, index) => {
+    const digitPlace = places[index];
+    const digit_key = parseInt(digit) * placeValues[index];
+    return romanNumerals[digitPlace][digit_key];
+  });
+  return romanNumeralResult.reverse().join("");
 }
 
 function consolePrintStatements(txt, variable) {
-  console.log(txt);
+  console.log(`${txt} =`);
   console.log(variable);
 }
 //numbersToRomanNumerals(3);
