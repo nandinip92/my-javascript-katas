@@ -68,9 +68,3 @@ export function numbersToRomanNumerals(inputNumber) {
 
   return getRomanNumerals(inputNumber);
 }
-
-function consolePrintStatements(txt, variable) {
-  console.log(`${txt} =`);
-  console.log(variable);
-}
-//numbersToRomanNumerals(3);
