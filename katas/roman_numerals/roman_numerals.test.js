@@ -36,9 +36,17 @@ describe("numbersToRomanNumerals", () => {
     expect(numbersToRomanNumerals(70)).toBe("LXX");
     expect(numbersToRomanNumerals(80)).toBe("LXXX");
   });
-  test("Returns a Roman Numaral of given integer around C: 100 (90", () => {
+  test("Returns a Roman Numaral of given integer around C: 100", () => {
     expect(numbersToRomanNumerals(90)).toBe("XC");
     expect(numbersToRomanNumerals(172)).toBe("CLXXII");
     expect(numbersToRomanNumerals(369)).toBe("CCCLXIX");
+  });
+
+  test("Returns a Roman Numaral of given integer around D: 500 ", () => {
+    expect(numbersToRomanNumerals(400)).toBe("CD");
+    expect(numbersToRomanNumerals(401)).toBe("CDI");
+    expect(numbersToRomanNumerals(420)).toBe("CDXX");
+    expect(numbersToRomanNumerals(447)).toBe("CDXLVII");
+    expect(numbersToRomanNumerals(448)).toBe("CDXLVIII");
   });
 });
