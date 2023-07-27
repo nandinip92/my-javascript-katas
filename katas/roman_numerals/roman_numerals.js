@@ -4,7 +4,8 @@ googleclassroom link for the assignment: https://classroom.google.com/c/NTYzNzA2
 Source of this kata: https://codingdojo.org/kata/RomanNumerals/ 
 */
 
-export function numbersToRomanNumerals(inputNumber) {
+export function getRomanNumerals(inputNumber) {
+  //dictionary lookup  for the roman numbers
   const romanNumerals = {
     ones: {
       1: "I",
@@ -42,10 +43,11 @@ export function numbersToRomanNumerals(inputNumber) {
     thousands: { 1000: "M", 2000: "MM", 3000: "MMM" },
   };
 
-  const splitNumber = inputNumber.toString().split("");
-  //consolePrintStatements("splitNumber", splitNumber);
+  //different positions of a digit in the number
   const places = ["ones", "tens", "hundreds", "thousands"];
   const placeValues = [1, 10, 100, 1000];
+
+  const splitNumber = inputNumber.toString().split("");
 
   let romanNumeralResult = splitNumber.reverse().map((digit, index) => {
     const digitPlace = places[index];
@@ -53,6 +55,18 @@ export function numbersToRomanNumerals(inputNumber) {
     return romanNumerals[digitPlace][digit_key];
   });
   return romanNumeralResult.reverse().join("");
+}
+
+export function numbersToRomanNumerals(inputNumber) {
+  if (inputNumber === undefined) throw new Error("Input number is required");
+  if (typeof inputNumber !== "number")
+    throw new Error("Input must be an positive Integer");
+  if (inputNumber <= 0)
+    throw new Error("Input must be positive number and greater than 0");
+  if (inputNumber > 3000)
+    throw new Error("Input number must be less than 3000");
+
+  return getRomanNumerals(inputNumber);
 }
 
 function consolePrintStatements(txt, variable) {
