@@ -1,6 +1,25 @@
 import { numbersToRomanNumerals } from "./roman_numerals";
 
 describe("numbersToRomanNumerals", () => {
+  test("throws an error if invalid input is passed", () => {
+    //Arrange, Act and Assert
+    expect(() => {
+      numbersToRomanNumerals();
+    }).toThrow("Input number is required");
+
+    expect(() => {
+      numbersToRomanNumerals("string");
+    }).toThrow("Input must be an positive Integer");
+
+    expect(() => {
+      numbersToRomanNumerals(-1);
+    }).toThrow("Input must be positive number and greater than 0");
+
+    expect(() => {
+      numbersToRomanNumerals(5500);
+    }).toThrow("Input number must be less than 3000");
+  });
+
   test("Returns a Roman Numaral for 1,5,10,50,100,500,1000", () => {
     expect(numbersToRomanNumerals(1)).toBe("I");
     expect(numbersToRomanNumerals(5)).toBe("V");
