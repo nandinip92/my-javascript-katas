@@ -13,6 +13,7 @@ describe("romanNumeralsToNumbers", () => {
   });
 
   test("Returns equivalent number to the given Roman Numeral", () => {
+    // Arrange ACT and ASSERT
     expect(romanNumeralsToNumbers("I")).toBe(1);
     expect(romanNumeralsToNumbers("V")).toBe(5);
     expect(romanNumeralsToNumbers("X")).toBe(10);
@@ -23,11 +24,13 @@ describe("romanNumeralsToNumbers", () => {
   });
 
   test("Returns equivalent number to the given Roman Numeral( <=3 )", () => {
+    // Arrange ACT and ASSERT
     expect(romanNumeralsToNumbers("I")).toBe(1);
     expect(romanNumeralsToNumbers("II")).toBe(2);
     expect(romanNumeralsToNumbers("III")).toBe(3);
   });
   test("Returns equivalent number to the given Roman Numeral ( >=4 and <=9)", () => {
+    // Arrange ACT and ASSERT
     expect(romanNumeralsToNumbers("IV")).toBe(4);
     expect(romanNumeralsToNumbers("V")).toBe(5);
     expect(romanNumeralsToNumbers("VI")).toBe(6);
@@ -36,6 +39,7 @@ describe("romanNumeralsToNumbers", () => {
     expect(romanNumeralsToNumbers("IX")).toBe(9);
   });
   test("Returns equivalent number to the given Roman Numeral ( >=10 and <39)", () => {
+    // Arrange ACT and ASSERT
     expect(romanNumeralsToNumbers("XI")).toBe(11);
     expect(romanNumeralsToNumbers("XV")).toBe(15);
     expect(romanNumeralsToNumbers("XXIV")).toBe(24);
@@ -43,18 +47,21 @@ describe("romanNumeralsToNumbers", () => {
     expect(romanNumeralsToNumbers("XXXIX")).toBe(39);
   });
   test("Returns equivalent number to the given Roman Numeral (40,60,70,80)", () => {
+    // Arrange ACT and ASSERT
     expect(romanNumeralsToNumbers("XL")).toBe(40);
     expect(romanNumeralsToNumbers("LX")).toBe(60);
     expect(romanNumeralsToNumbers("LXX")).toBe(70);
     expect(romanNumeralsToNumbers("LXXX")).toBe(80);
   });
   test("Returns equivalent number to the given Roman Numeral around C: 100", () => {
+    // Arrange ACT and ASSERT
     expect(romanNumeralsToNumbers("XC")).toBe(90);
     expect(romanNumeralsToNumbers("CLXXII")).toBe(172);
     expect(romanNumeralsToNumbers("CCCLXIX")).toBe(369);
   });
 
   test("Returns equivalent number to the given Roman Numeral D: 500 ", () => {
+    // Arrange ACT and ASSERT
     expect(romanNumeralsToNumbers("CD")).toBe(400);
     expect(romanNumeralsToNumbers("CDI")).toBe(401);
     expect(romanNumeralsToNumbers("CDXX")).toBe(420);
@@ -63,6 +70,7 @@ describe("romanNumeralsToNumbers", () => {
   });
 
   test("Tests for larger numbers", () => {
+    // Arrange ACT and ASSERT
     expect(romanNumeralsToNumbers("MCMXCVIII")).toBe(1998);
     expect(romanNumeralsToNumbers("MMDCCLI")).toBe(2751);
   });
